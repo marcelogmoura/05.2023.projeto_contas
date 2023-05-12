@@ -1,4 +1,8 @@
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+
 <!DOCTYPE html>
+
+
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -16,22 +20,30 @@
             <h5>Criar Usuário</h5>
           </div>
           <div class="card-body">
-            <form>
+          
+          <h4> ${mensagem}</h4>
+          
+            <form method="post" action="criar-usuario-post">
+            
             	<div class="mb-3">
                 <label for="nome" class="form-label">Nome do usuário:</label>
-                <input type="text" class="form-control" id="nome" name="nome" required>
+                <form:input path="dto.nome" type="text" class="form-control" id="nome" name="nome" />
               </div>
+              
               <div class="mb-3">
                 <label for="email" class="form-label">Email de acesso:</label>
-                <input type="email" class="form-control" id="email" name="email" required>
+                <form:input path="dto.email" type="email" class="form-control" id="email" name="email"  />
               </div>
+              
               <div class="mb-3">
                 <label for="senha" class="form-label">Senha de acesso:</label>
-                <input type="password" class="form-control" id="senha" name="senha" required>
+                <form:input path="dto.senha" type="password" class="form-control" id="senha" name="senha"  />
               </div>
+              
               <div class="d-grid gap-2">
                 <button type="submit" class="btn btn-primary">Realizar Cadastro</button>
               </div>
+              
             </form>
           </div>
           <div class="card-footer text-center">
