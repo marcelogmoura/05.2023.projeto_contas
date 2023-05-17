@@ -1,7 +1,5 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-
 <!DOCTYPE html>
-
 
 <html lang="en">
 <head>
@@ -21,27 +19,58 @@
           </div>
           <div class="card-body">
           
-          <h4> ${mensagem}</h4>
-          
+		  <div class="m-3 text-center">
+          <h5> ${mensagem}</h5>
+          </div>
+                              
             <form method="post" action="criar-usuario-post">
             
             	<div class="mb-3">
-                <label for="nome" class="form-label">Nome do usuário:</label>
-                <form:input path="dto.nome" type="text" class="form-control" id="nome" name="nome" />
+                <label for="nome" class="form-label">
+                Nome do usuário:
+                </label>
+                <form:input 
+                	path="dto.nome" 
+                	type="text" 
+                	class="form-control" 
+                	id="nome" 
+                	name="nome" 
+                	required="required"
+                	/>
               </div>
               
               <div class="mb-3">
-                <label for="email" class="form-label">Email de acesso:</label>
-                <form:input path="dto.email" type="email" class="form-control" id="email" name="email"  />
+                <label for="email" class="form-label">
+                Email de acesso:
+                </label>
+                <form:input 
+                path="dto.email" 
+                type="email" 
+                class="form-control" 
+                id="email" 
+                name="email"  
+                required="required"
+                />
               </div>
               
               <div class="mb-3">
-                <label for="senha" class="form-label">Senha de acesso:</label>
-                <form:input path="dto.senha" type="password" class="form-control" id="senha" name="senha"  />
+                <label for="senha" class="form-label">
+                Senha de acesso:
+                </label>
+                <form:input 
+                path="dto.senha" 
+                type="password" 
+                class="form-control" 
+                id="senha" 
+                name="senha"  
+                required="required"
+                />
               </div>
               
               <div class="d-grid gap-2">
-                <button type="submit" class="btn btn-primary">Realizar Cadastro</button>
+                <button type="submit" class="btn btn-primary">
+                Realizar Cadastro
+                </button>
               </div>
               
             </form>
@@ -49,6 +78,9 @@
           <div class="card-footer text-center">
             <a href="/projeto_contas/">Voltar</a> 
           </div>
+          
+
+          
         </div>
       </div>
     </div>

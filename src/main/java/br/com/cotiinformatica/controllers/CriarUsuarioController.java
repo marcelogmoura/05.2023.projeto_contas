@@ -34,11 +34,18 @@ public class CriarUsuarioController {
 			usuario.setEmail(dto.getEmail());
 			usuario.setSenha(dto.getSenha());
 			
-			usuarioRepository.create(usuario);
-			
-			dto = new CriarUsuarioDto(); // limpar o formulario apos envio
+			if(usuarioRepository.findByEmail(usuario.getEmail()) == null) {
 				
-			modelAndView.addObject("mensagem" , "Usuário cadastrado com sucesso");
+				usuarioRepository.create(usuario);
+				
+				dto = new CriarUsuarioDto(); // limpar o formulario apos envio
+					
+				modelAndView.addObject("mensagem" , "Usuário cadastrado com sucesso");
+				
+			}else {
+				
+				modelAndView.addObject("mensagem" , "E-mail já existe, tente outro");
+			}
 			
 		}catch(Exception e) {
 			
