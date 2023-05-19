@@ -19,6 +19,10 @@
           
           <div class="card-body">
           
+          <div class="m-3 text-center">
+          <h5> ${mensagem}</h5>
+          </div>
+          
             <form method="post" action="autenticar-post">
             
               <div class="mb-3">

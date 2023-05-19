@@ -1,5 +1,7 @@
 package br.com.cotiinformatica.controllers;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +26,7 @@ public class AutenticarController {
 	}
 	
 	@RequestMapping(value = "/autenticar-post" , method = RequestMethod.POST)
-	public ModelAndView autenticarPost(AutenticarDto dto) {
+	public ModelAndView autenticarPost(AutenticarDto dto, HttpServletRequest request) {
 		
 		ModelAndView modelAndView = new ModelAndView("autenticar");
 		
@@ -34,10 +36,12 @@ public class AutenticarController {
 			
 			if(usuario != null) {
 				
+				request.getSession().setAttribute("auth_usuario", usuario);
+				
 				modelAndView.setViewName("redirect:/admin/dashboard");
 			}else {
 				
-				modelAndView.addObject("mensagem" , "acesso negado, dados inválidos");
+				modelAndView.addObject("mensagem" , "Acesso negado, dados inválidos");
 				
 			}
 			
