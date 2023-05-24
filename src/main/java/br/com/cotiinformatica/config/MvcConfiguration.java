@@ -12,6 +12,7 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
+import br.com.cotiinformatica.repositories.CategoriaRepository;
 import br.com.cotiinformatica.repositories.UsuarioRepository;
 
 @Configuration
@@ -49,5 +50,11 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter{
 	public UsuarioRepository getUsuarioRepository() {
 		return new UsuarioRepository(getDataSource());
 	}
+	
+	@Bean
+	public CategoriaRepository getCategoriaRepository() {
+		return new CategoriaRepository(getDataSource());
+	}
+	
 	
 }
