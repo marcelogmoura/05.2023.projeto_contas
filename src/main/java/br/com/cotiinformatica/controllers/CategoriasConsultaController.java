@@ -38,6 +38,30 @@ public class CategoriasConsultaController {
 		return modelAndView;
 	}
 
+	@RequestMapping(value = "/admin/excluir-categoria" )
+	public ModelAndView excluirCategoria(Integer idCategoria , HttpServletRequest request) {
+		
+		ModelAndView modelAndView = new ModelAndView("/admin/categorias-consulta");
+		
+		try {
+			
+			Usuario usuario = (Usuario) request.getSession().getAttribute("auth_usuario");
+			
+			Categoria categoria = categoriaRepository.findById(idCategoria, usuario.getIdUsuario());
+			categoriaRepository.delete(categoria);
+			
+			modelAndView.addObject("mensagem" , "Categoria excluída com sucesso");
+			
+			List<Categoria> categorias = categoriaRepository.findAll(usuario.getIdUsuario());
+			modelAndView.addObject("categorias" , categorias);
+			
+			
+		}catch (Exception e) {
+			modelAndView.addObject("mensagem" , e.getMessage());
+		}
+		
+		return modelAndView;
+	}
 	
 	
 }

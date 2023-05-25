@@ -18,6 +18,15 @@
 
 	<dependencies>
 	
+			<!-- https://mvnrepository.com/artifact/javax.servlet.jsp.jstl/jstl -->
+	<dependency>
+	    <groupId>javax.servlet</groupId>
+	    <artifactId>jstl</artifactId>
+	    <version>1.2</version>
+	</dependency>
+
+	
+	
 		<!-- postgre -->
 			<dependency>
 		    <groupId>org.postgresql</groupId>
@@ -32,8 +41,6 @@
 	    <version>1.18.26</version>
 	    <scope>provided</scope>
 	</dependency>
-
-	
 	
 		<!-- Spring core & mvc -->
 		<dependency>
@@ -41,6 +48,7 @@
 			<artifactId>spring-context</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
+					
 				
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -85,6 +93,10 @@
 			<version>2.1</version>
 			<scope>provided</scope>
 		</dependency>
+		
+		
+		
+		
 	</dependencies>
 
 	<repositories>
