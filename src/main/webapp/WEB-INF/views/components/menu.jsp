@@ -1,4 +1,4 @@
-<nav class="navbar bg-primary navbar-expand-lg bg-body-tertiary" data-bs-theme="theme">
+<nav class="navbar bg-danger navbar-expand-lg bg-body-tertiary" data-bs-theme="theme">
   <div class="container-fluid">
     <a class="navbar-brand text-white" href="#">Projeto Contas</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

@@ -42,7 +42,6 @@ public class AutenticarController {
 			}else {
 				
 				modelAndView.addObject("mensagem" , "Acesso negado, dados inválidos");
-				
 			}
 			
 		}catch (Exception e) {
@@ -51,7 +50,5 @@ public class AutenticarController {
 		
 		modelAndView.addObject("dto" , dto);
 		return modelAndView;
-		
 	}
-
 }

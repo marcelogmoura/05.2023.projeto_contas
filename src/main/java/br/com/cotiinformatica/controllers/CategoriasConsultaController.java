@@ -50,7 +50,7 @@ public class CategoriasConsultaController {
 			Categoria categoria = categoriaRepository.findById(idCategoria, usuario.getIdUsuario());
 			categoriaRepository.delete(categoria);
 			
-			modelAndView.addObject("mensagem" , "Categoria excluída com sucesso");
+			modelAndView.addObject("mensagem" , "Categoria excluída com sucesso.");
 			
 			List<Categoria> categorias = categoriaRepository.findAll(usuario.getIdUsuario());
 			modelAndView.addObject("categorias" , categorias);

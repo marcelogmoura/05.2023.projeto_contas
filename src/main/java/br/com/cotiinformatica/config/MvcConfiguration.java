@@ -13,6 +13,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import br.com.cotiinformatica.repositories.CategoriaRepository;
+import br.com.cotiinformatica.repositories.ContaRepository;
 import br.com.cotiinformatica.repositories.UsuarioRepository;
 
 @Configuration
@@ -56,5 +57,9 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter{
 		return new CategoriaRepository(getDataSource());
 	}
 	
+	@Bean
+	public ContaRepository getContaRepository() {
+		return new ContaRepository(getDataSource());
+	}
 	
 }

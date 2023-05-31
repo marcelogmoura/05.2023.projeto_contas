@@ -33,7 +33,7 @@
   			
   				<div class="row mb-2">
   					<div class="col-md-9">
-  						<label>Nome do categoria:</label>
+  						<label>Nome da categoria:</label>
   						<form:input
   							path="dto.nome"
   							type="text"
@@ -50,6 +50,7 @@
   						</form:select>
   					</div>
   				</div>
+  				
   				<div class="row mb-2">
   					<div class="col-md-12">
   						<input type="submit" class="btn btn-success" value="Realizar Cadastro"/>

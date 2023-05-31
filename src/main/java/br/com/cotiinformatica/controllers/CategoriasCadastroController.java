@@ -42,7 +42,7 @@ public class CategoriasCadastroController {
 			categoria.setIdUsuario(usuario.getIdUsuario());
 			
 			categoriaRepository.create(categoria);
-			modelAndView.addObject("mensagem", "Categoria cadastrada com sucesso"); 		
+			modelAndView.addObject("mensagem", "Categoria cadastrada com sucesso."); 		
 			dto = new CategoriasCadastroDto();
 			
 			
