@@ -81,6 +81,18 @@ public class UsuarioRepository {
 		
 	}
 	
+	public void update(Usuario usuario) throws Exception{
+		String query = "update usuario set nome=? , email=? , senha=md5(?) where idusuario=?";
+		Object[] params = {
+				usuario.getNome(),
+				usuario.getEmail(),
+				usuario.getSenha(),
+				usuario.getIdUsuario()
+		};
+		
+		jdbcTemplate.update(query , params);
+	}
+	
 }
 
 

@@ -18,7 +18,7 @@ import br.com.cotiinformatica.repositories.ContaRepository;
 
 @Controller
 public class ContasEdicaoController {
-	
+
 	@Autowired
 	private ContaRepository contaRepository;
 	
@@ -26,11 +26,11 @@ public class ContasEdicaoController {
 	private CategoriaRepository categoriaRepository;
 	
 	@RequestMapping(value = "/admin/contas-edicao")
-	public ModelAndView contasEdicao(Integer idConta , HttpServletRequest request) {
+	public ModelAndView contasEdicao(Integer idConta, HttpServletRequest request) {
+		
 		ModelAndView modelAndView = new ModelAndView("admin/contas-edicao");
 		
 		try {
-			
 			Usuario usuario = (Usuario) request.getSession().getAttribute("auth_usuario");
 			
 			Conta conta = contaRepository.findById(idConta, usuario.getIdUsuario());
@@ -43,20 +43,20 @@ public class ContasEdicaoController {
 			dto.setObservacoes(conta.getObservacoes());
 			dto.setIdCategoria(conta.getCategoria().getIdCategoria());
 			
-			modelAndView.addObject("dto" , dto);
-			modelAndView.addObject("categorias" , categoriaRepository.findAll(usuario.getIdUsuario()));
-			
-		}catch (Exception e) {
+			modelAndView.addObject("dto", dto);
+			modelAndView.addObject("categorias", categoriaRepository.findAll(usuario.getIdUsuario()));
+		}
+		catch(Exception e) {
 			modelAndView.addObject("mensagem", e.getMessage());
 		}
 		
 		return modelAndView;
 	}
 	
-	@RequestMapping(value = "/admin/contas-edicao" , method = RequestMethod.POST )
-	public ModelAndView contasEdicaoPost(ContasEdicaoDto dto , HttpServletRequest request) {
+	@RequestMapping(value = "/admin/contas-edicao-post", method = RequestMethod.POST)
+	public ModelAndView contasEdicaoPost(ContasEdicaoDto dto, HttpServletRequest request) {
 		
-		ModelAndView modelAndView = new ModelAndView("admin/contas/edicao");
+		ModelAndView modelAndView = new ModelAndView("admin/contas-edicao");
 		
 		try {
 			Usuario usuario = (Usuario) request.getSession().getAttribute("auth_usuario");
@@ -70,19 +70,29 @@ public class ContasEdicaoController {
 			conta.setIdCategoria(dto.getIdCategoria());
 			conta.setIdUsuario(usuario.getIdUsuario());
 			
-			contaRepository.update(conta);
+			contaRepository.update(conta); 
 			
-			modelAndView.addObject("mensagem" , "Atualizado com sucesso.");
-			modelAndView.addObject("dto", dto );
-			modelAndView.addObject("categorias" , categoriaRepository.findAll(usuario.getIdUsuario()));
-			
-			
-		}catch (Exception e) {
-			modelAndView.addObject("mensagem" , e.getMessage() );
+			modelAndView.addObject("mensagem", "Conta atualizada com sucesso.");
+			modelAndView.addObject("dto", dto);
+			modelAndView.addObject("categorias", categoriaRepository.findAll(usuario.getIdUsuario()));
+		}
+		catch(Exception e) {
+			modelAndView.addObject("mensagem", e.getMessage());
 		}
 		
 		return modelAndView;
-	}
-}
+	}	
 	
+}
+
+
+
+
+
+
+
+
+
+
+
 
