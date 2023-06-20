@@ -1,6 +1,9 @@
 package br.com.cotiinformatica.controllers;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.temporal.TemporalAdjusters;
 import java.util.Date;
 import java.util.List;
 
@@ -24,9 +27,34 @@ public class ContasConsultaController {
 	private ContaRepository contaRepository;
 	
 	@RequestMapping(value = "/admin/contas-consulta")
-	public ModelAndView contasConsulta() {
+	public ModelAndView contasConsulta(HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView("admin/contas-consulta");
-		modelAndView.addObject("dto" , new ContasConsultaDto());
+		ContasConsultaDto dto = new ContasConsultaDto();
+		
+		try {
+			
+			LocalDate primeiroDiaDoMes = LocalDate.now().with(TemporalAdjusters.firstDayOfMonth());
+			LocalDate ultimoDiaDoMes = LocalDate.now().with(TemporalAdjusters.lastDayOfMonth());
+			
+			Usuario usuario = (Usuario) request.getSession().getAttribute("auth_usuario");
+			
+			Date dataInicio = Date.from(primeiroDiaDoMes.atStartOfDay(ZoneId.systemDefault()).toInstant());
+			Date dataFim = Date.from(ultimoDiaDoMes.atStartOfDay(ZoneId.systemDefault()).toInstant());
+			
+			List<Conta> contas = contaRepository.findAll(dataInicio , dataFim, usuario.getIdUsuario());
+			
+			modelAndView.addObject("contas" , contas);
+			
+			dto.setDataInicio(new SimpleDateFormat("yyyy-MM-dd").format(dataInicio));
+			dto.setDataFim(new SimpleDateFormat("yyyy-MM-dd").format(dataFim));
+			
+			
+		}catch (Exception e) {
+			modelAndView.addObject("mensagem" , e.getMessage());
+			
+		}
+		
+		modelAndView.addObject("dto" , dto );
 		return modelAndView;
 	}
 	
@@ -43,6 +71,7 @@ public class ContasConsultaController {
 			List<Conta> contas = contaRepository.findAll(dataInicio, dataFim, usuario.getIdUsuario());
 			
 			modelAndView.addObject("contas" , contas);
+			
 			
 		}catch (Exception e) {
 			modelAndView.addObject("mensagem" , e.getMessage());
